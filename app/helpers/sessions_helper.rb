@@ -9,7 +9,7 @@ module SessionsHelper
         end
     end
     
-    def logged_id?
+    def logged_in?
        # !! current_user
        if current_user
             return true
