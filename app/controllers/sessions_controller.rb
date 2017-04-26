@@ -1,4 +1,5 @@
 class SessionsController < ApplicationController
+
   def new
   end
 
@@ -16,12 +17,12 @@ class SessionsController < ApplicationController
 
   def destroy
     session[:user_id] = nil
-    flash[:success] = 'logoutしました'
+    flash[:success] = 'ログアウトしました。'
     redirect_to root_path
   end
-  
+
   private
-    
+
   def login(email, password)
     @user = User.find_by(email: email)
     if @user && @user.authenticate(password)
