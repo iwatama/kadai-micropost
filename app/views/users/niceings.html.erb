@@ -2,13 +2,13 @@
   <aside class="col-xs-4">
     <div class="panel panel-default">
       <div class="panel-heading">
-        <h3 class="panel-title">show::<%= @user.name %></h3>
+        <h3 class="panel-title">nice::<%= @user.name %></h3>
       </div>
       <div class="panel-body">
         <img class="media-object img-rounded img-responsive" src="<%= gravatar_url(@user, { size: 500 }) %>" alt="">
       </div>
     </div>
-    <%= render 'relationships/follow_button', user: @user %>
+  
   </aside>
   <div class="col-xs-8">
     <ul class="nav nav-tabs nav-justified">
@@ -21,6 +21,8 @@
       <li class="<%= 'active' if current_page?(niceings_user_path(@user)) %>"><%= link_to niceings_user_path(@user) do %>nice 
         <span class="badge"><%= @count_niceings %></span><% end %></li>
     </ul>
-    <%= render 'microposts/microposts', microposts: @microposts, user: @user %>
+    
+    <%= render 'microposts/nices', microposts: @niceings, user: @user %>
+
   </div>
 </div>

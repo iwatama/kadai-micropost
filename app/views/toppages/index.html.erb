@@ -1,6 +1,6 @@
 <% if logged_in? %>
 ログインしてる！！！
-  <p>ログイン完了ユーザ: <%= current_user.name %></p>
+  <p>ログインユーザ: <%= current_user.name %></p>
   <div class="row">
     <aside class="col-md-4">
       <%= form_for(@micropost) do |f| %>

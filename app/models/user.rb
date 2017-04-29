@@ -12,6 +12,14 @@ class User < ApplicationRecord
   has_many :reverses_of_relationship, class_name: 'Relationship', foreign_key: 'follow_id'
   has_many :followers, through: :reverses_of_relationship, source: :user
   
+  has_many :okiniiris
+  #has_many :microposts, through: :okiniiris
+  has_many :niceings, through: :okiniiris, source: :micropost
+  #has_many :followings, through: :relationships, source: :follow
+  #has_many :want_items, through: :wants, class_name: 'Item', source: :item
+  #  has_many :ownerships
+  #  has_many :items, through: :ownerships
+
   def follow(other_user)
     unless self == other_user
       self.relationships.find_or_create_by(follow_id: other_user.id)
@@ -31,4 +39,19 @@ class User < ApplicationRecord
     Micropost.where(user_id: self.following_ids + [self.id])
   end
   
+  
+  def nice(other_user)
+    #unless self == other_user
+      self.okiniiris.find_or_create_by(micropost_id: other_user.id)
+    #end
+  end
+
+  def unnice(other_user)
+    okiniiri = self.okiniiris.find_by(micropost_id: other_user.id)
+    okiniiri.destroy if relationship
+  end
+
+  def nice?(other_user)
+    self.okiniiris.include?(other_user)
+  end
 end

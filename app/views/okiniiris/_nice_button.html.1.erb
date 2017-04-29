@@ -1,0 +1,11 @@
+<% if current_user.nice?(micropost) %>
+  <%= form_tag(ownership_path(micropost.id), method: :delete) do %>
+    <%= hidden_field_tag :micropost_id, micropost.id %>
+    <%= submit_tag 'UnNice', class: 'btn btn-success' %>
+  <% end %>
+<% else %>
+  <%= form_tag(ownerships_path) do %>
+    <%= hidden_field_tag :micropost_id, micropost.id %>
+    <%= submit_tag 'Nice', class: 'btn btn-primary' %>
+  <% end %>
+<% end %>
