@@ -1,0 +1,11 @@
+  <% if current_user.gooding?(micropost) %>
+    <%= form_for(current_user.favarites.find_by(post_id: user.id), html: { method: :delete }) do |f| %>
+      <%= hidden_field_tag :post_id, user.id %>
+      <%= f.submit 'Ungood', class: 'btn btn-danger btn-block' %>
+    <% end %>
+  <% else %>
+    <%= form_for(current_user.relationships.build) do |f| %>
+      <%= hidden_field_tag :post_id, user.id %>
+      <%= f.submit 'Good', class: 'btn btn-primary btn-block' %>
+    <% end %>
+  <% end %>
