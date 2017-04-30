@@ -8,6 +8,7 @@ class UsersController < ApplicationController
   def show
     @user = User.find(params[:id])
     @microposts = @user.microposts.order('created_at DESC').page(params[:page])
+    @okiniiri=Okiniiri.find_by(micropost_id: params[:page])
     counts @user
   end
 
@@ -32,6 +33,12 @@ class UsersController < ApplicationController
     @followings = @user.followings.page(params[:page])
     counts(@user)
   end
+  
+  def followers
+    @user = User.find(params[:id])
+    @followers = @user.followers.page(params[:page])
+    counts(@user)
+  end
 
   def follow(other_user)
     unless self == other_user
@@ -54,23 +61,6 @@ class UsersController < ApplicationController
     ## @microposts = @user.microposts.order('created_at DESC').page(params[:page])
     counts(@user)
   end
-
-  def nice(other_user)
-    unless self == other_user
-      self.okiniiris.find_or_create_by(user_id: other_user.id)
-    end
-  end
-
-  def unnice(other_user)
-    okiniiri = self.okiniiris.find_by(user_id: other_user.id)
-    okiniiris.destroy if okiniiri
-  end
-
-  def nice?(other_user)
-    self.niceings.include?(other_user)
-  end
-  
-
 
   private
 

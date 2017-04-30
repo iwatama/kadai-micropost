@@ -1,0 +1,7 @@
+<% if current_user == user %>
+  <%= form_for(current_user.okiniiris.find_by(micropost_id: micropost), method: :delete) do |f| %>
+    <%= hidden_field_tag :micropost_id, micropost %>
+    <%= f.submit 'unnice', class: 'btn btn-success' %>
+  <% end %>
+<% end %>
+

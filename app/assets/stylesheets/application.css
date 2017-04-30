@@ -13,3 +13,17 @@
  *= require_tree .
  *= require_self
  */
+.kiji {
+  font-size: 14px;
+  height: 60px;
+  width: 750px;
+  background-color: #FFFF99;
+}
+.kiji_button {
+  width: 750px;
+  display: inline-block;
+  margin: 10 5px;
+}
+.media-body{
+  overflow: hidden;
+}

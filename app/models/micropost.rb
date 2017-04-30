@@ -6,4 +6,5 @@ class Micropost < ApplicationRecord
   
   has_many :okiniiris
   has_many :users, through: :okiniiris
+
 end

@@ -16,8 +16,13 @@ class MicropostsController < ApplicationController
   end
 
   def destroy
-    @micropost.destroy
-    flash[:success] = 'メッセージを削除しました。'
+    @okiniiri = Okiniiri.find_by(micropost_id: params[:id])
+    if @okiniiri
+      flash[:danger] = 'このメッセージは、いずれかのユーザーにniceされているので削除はできません。'
+    else
+      @micropost.destroy
+      flash[:success] = 'メッセージを削除しました。'
+    end
     redirect_back(fallback_location: root_path)
   end
 
